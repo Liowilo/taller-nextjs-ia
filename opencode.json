@@ -1,0 +1,39 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "nvidia/qwen/qwen3-coder-480b-a35b-instruct",
+  "provider": {
+    "nvidia": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "NVIDIA (gratis)",
+      "options": {
+        "baseURL": "https://integrate.api.nvidia.com/v1",
+        "apiKey": "{env:NVIDIA_API_KEY}"
+      },
+      "models": {
+        "qwen/qwen3-coder-480b-a35b-instruct": {
+          "name": "Qwen3 Coder 480B (recomendado para código)",
+          "limit": { "context": 262144, "output": 16384 }
+        },
+        "moonshotai/kimi-k2-instruct": {
+          "name": "Kimi K2",
+          "limit": { "context": 131072, "output": 16384 }
+        },
+        "deepseek-ai/deepseek-v3.1": {
+          "name": "DeepSeek V3.1",
+          "limit": { "context": 131072, "output": 16384 }
+        },
+        "meta/llama-3.3-70b-instruct": {
+          "name": "Llama 3.3 70B (respaldo ligero)",
+          "limit": { "context": 131072, "output": 8192 }
+        }
+      }
+    }
+  },
+  "mcp": {
+    "supabase": {
+      "type": "remote",
+      "url": "https://mcp.supabase.com/mcp?features=database,docs,development",
+      "enabled": true
+    }
+  }
+}

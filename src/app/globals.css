@@ -1,0 +1,28 @@
+/* Tailwind CSS v4: una sola línea activa todas las utilidades. */
+@import "tailwindcss";
+
+/* @theme crea tus propios "tokens". Después puedes usar clases como
+   bg-tinta, text-papel o font-mono en cualquier componente. */
+@theme {
+  --color-tinta: #0b0f19;
+  --color-panel: #121829;
+  --color-borde: #232c45;
+  --color-papel: #e7ecf7;
+  --color-tenue: #8b96b3;
+  --color-acento: #76e4c3;
+  --font-sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+}
+
+body {
+  background: var(--color-tinta);
+  color: var(--color-papel);
+}
+
+/* Una cuadrícula sutil de fondo, hecha solo con CSS */
+.fondo-cuadricula {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}

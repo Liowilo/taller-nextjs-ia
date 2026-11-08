@@ -1,0 +1,35 @@
+name: Validar entrega
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    name: Revisar archivos y compilar
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el código del PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci --no-audit --no-fund
+
+      - name: Validar que el PR solo toque tus archivos
+        env:
+          PR_AUTOR: ${{ github.event.pull_request.user.login }}
+        run: npm run validar-pr
+
+      - name: Compilar el proyecto (¿tu página tiene errores?)
+        run: npm run build

@@ -1,0 +1,4 @@
+{
+  "nota": "Archivo del PROFE. codigoHash es el sha256 de la palabra secreta que se anuncia en clase. Genéralo con: npm run hash-codigo -- PALABRA. Si está vacío, no se valida el código.",
+  "codigoHash": ""
+}

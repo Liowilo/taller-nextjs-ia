@@ -1,0 +1,36 @@
+{
+  "name": "taller-nextjs-ia",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Repositorio base del taller: Next.js + Tailwind + Node.js + OpenCode + NVIDIA + v0 + Supabase MCP",
+  "type": "module",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "nuevo-alumno": "node scripts/nuevo-alumno.mjs",
+    "validar": "node scripts/validar.mjs",
+    "validar-pr": "node scripts/validar-pr.mjs",
+    "hash-codigo": "node scripts/hash-codigo.mjs",
+    "node:hola": "node ejercicios/node/01-hola-node.mjs",
+    "node:archivos": "node ejercicios/node/02-archivos.mjs",
+    "node:nvidia": "node --env-file-if-exists=.env.local ejercicios/node/03-nvidia-directo.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
+    "next": "^16.4.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.7.0"
+  }
+}
