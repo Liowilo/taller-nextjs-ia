@@ -128,11 +128,12 @@ git commit -am "M3: componente de v0"
 ```bash
 cp .env.example .env.local        # Windows: copy .env.example .env.local
 ```
-Pega tu llave en `NVIDIA_API_KEY`. Prueba que funciona **sin agente**:
+Abre `.env.local` y pega tu llave en `NVIDIA_API_KEY=`. Deja `NVIDIA_MODEL=` vacío.
+Prueba que funciona **sin agente**:
 
 ```bash
 npm run node:nvidia -- "¿Qué es Tailwind en una línea?"
-npm run node:nvidia -- --modelos      # qué modelos hay disponibles hoy
+npm run node:nvidia -- --probar       # cuáles modelos de opencode.json funcionan hoy
 ```
 
 ### 4.2 Instala OpenCode
@@ -142,21 +143,108 @@ npm install -g opencode-ai
 ```
 
 ### 4.3 Dale tu llave a OpenCode
-`opencode.json` ya trae configurado el proveedor `nvidia`; lee la llave de la variable `NVIDIA_API_KEY`
-**de tu terminal** (no del `.env.local`):
 
+> ⚠️ **Tu llave tiene que estar en DOS lugares**, porque son dos programas distintos:
+>
+> | Programa | ¿De dónde lee la llave? | ¿Ya lo hiciste? |
+> |---|---|---|
+> | `npm run node:nvidia` y Next.js | del archivo `.env.local` | ✅ sí, en el paso 4.1 |
+> | **OpenCode** | de una **variable de entorno de tu terminal** llamada `NVIDIA_API_KEY` | ❌ todavía no, es este paso |
+>
+> OpenCode **no lee** tu `.env.local`. Por eso, aunque `npm run node:nvidia` te funcione, OpenCode puede fallar.
+
+#### Paso 1 · ¿Qué terminal estás usando?
+
+Mira el inicio de la línea donde escribes:
+
+| Si ves algo como… | Es… | Usa los comandos marcados como |
+|---|---|---|
+| `PS C:\Users\ana>` | **PowerShell** (Windows, y la terminal por defecto de VS Code en Windows) | `# PowerShell` |
+| `C:\Users\ana>` (sin `PS`) | **Símbolo del sistema / CMD** (Windows) | `:: CMD` |
+| `ana@laptop MINGW64 ~` | **Git Bash** (Windows) | `# Linux o Git Bash` |
+| `ana@MacBook ~ %` | **Mac** | `# Mac` |
+| `ana@pc:~$` | **Linux** | `# Linux o Git Bash` |
+
+#### Paso 2 · Elige UNA de estas dos formas
+
+En todos los comandos cambia `nvapi-TU-LLAVE` por tu llave real, **sin espacios**.
+
+**🅰️ Forma temporal: solo para esta terminal.** Se borra al cerrar la terminal; cada vez que abras una nueva, lo repites.
+Úsala en computadoras del laboratorio o compartidas.
+
+```powershell
+# PowerShell
+$env:NVIDIA_API_KEY="nvapi-TU-LLAVE"
+```
+```bat
+:: CMD (sin comillas)
+set NVIDIA_API_KEY=nvapi-TU-LLAVE
+```
 ```bash
-# macOS / Linux / Git Bash
-export NVIDIA_API_KEY="nvapi-..."
-# Windows PowerShell
-$env:NVIDIA_API_KEY="nvapi-..."
+# Mac, Linux o Git Bash
+export NVIDIA_API_KEY="nvapi-TU-LLAVE"
 ```
 
-Desde la carpeta del proyecto:
+Después, **en esa misma terminal**, sigue al paso 3.
+
+**🅱️ Forma permanente: recomendada en tu computadora personal.** Se guarda en tu usuario y sirve en todas las terminales que abras después.
+
+```powershell
+# PowerShell
+[Environment]::SetEnvironmentVariable("NVIDIA_API_KEY", "nvapi-TU-LLAVE", "User")
+```
+```bat
+:: CMD
+setx NVIDIA_API_KEY "nvapi-TU-LLAVE"
+```
+```bash
+# Mac (zsh, la terminal por defecto)
+echo 'export NVIDIA_API_KEY="nvapi-TU-LLAVE"' >> ~/.zshrc
+```
+```bash
+# Linux o Git Bash
+echo 'export NVIDIA_API_KEY="nvapi-TU-LLAVE"' >> ~/.bashrc
+```
+
+👉 **Importante:** la forma permanente **no aplica a la terminal que ya tienes abierta**. Ciérrala y abre una nueva.
+Si usas la terminal de VS Code, **cierra VS Code por completo** (no solo la terminal) y ábrelo otra vez.
+
+#### Paso 3 · Comprueba que la terminal sí tiene tu llave
+
+```powershell
+# PowerShell
+echo $env:NVIDIA_API_KEY
+```
+```bat
+:: CMD
+echo %NVIDIA_API_KEY%
+```
+```bash
+# Mac, Linux o Git Bash
+echo $NVIDIA_API_KEY
+```
+
+- ✅ Si imprime `nvapi-...` → listo, sigue al paso 4.
+- ❌ Si sale vacío (o en CMD sale literalmente `%NVIDIA_API_KEY%`) → la terminal no tiene la llave. Revisa que la escribiste en la misma terminal (forma temporal) o que abriste una terminal nueva (forma permanente).
+
+#### Paso 4 · Abre OpenCode desde la carpeta del proyecto
+
 ```bash
 opencode
 ```
-Escribe `/models` y elige **NVIDIA (gratis) → Qwen3 Coder**. Si va lento o falla, prueba Kimi K2 o Llama 3.3.
+
+Escribe `/models` y elige un modelo de **NVIDIA (gratis)**. El recomendado ya viene seleccionado.
+Mándale un "hola" para probar.
+
+| Si te sale… | Significa… | Haz esto |
+|---|---|---|
+| `401` / `Unauthorized` / `invalid api key` | OpenCode no encontró tu llave, o está mal copiada | Repite el paso 3. Si sale bien, revisa que no copiaste espacios de más |
+| `410 Gone` / `404` / `end of life` | NVIDIA retiró ese modelo | `/models` y elige otro. Tu conversación no se pierde |
+| `429` / `Too Many Requests` | Límite de peticiones por minuto del plan gratis | Espera 1 minuto o cambia de modelo con `/models` |
+| Se queda pensando más de 1 minuto | El modelo está saturado | `Esc` para cancelar, `/models` y elige otro |
+
+> 🔒 **Tu llave es como una contraseña.** No la pegues en Discord, en el chat de OpenCode ni en ningún archivo que subas a GitHub.
+> Si se te escapó, entra a build.nvidia.com, bórrala y genera otra.
 
 ### 4.4 Ponlo a trabajar
 OpenCode ya leyó `AGENTS.md`, así que sabe que solo debe tocar tu carpeta. Prueba (cambia TU-USUARIO):
@@ -175,8 +263,10 @@ tarjeta, una galería… **Lee lo que propone antes de aceptar.**
 En tu JSON: `"opencode": true` y en `promptFavorito` el prompt que mejor te funcionó →
 
 ```bash
-git commit -am "M4: OpenCode agrega componente"
+git add .
+git commit -m "M4: OpenCode agrega componente"
 ```
+(Aquí usamos `git add .` porque OpenCode creó archivos nuevos; `commit -am` solo guarda archivos que ya existían.)
 
 ---
 
@@ -224,7 +314,8 @@ git commit -am "M5: Supabase con MCP"
    ```
 3. Sube tu rama a **tu fork**:
    ```bash
-   git commit -am "Entrega final"
+   git add .
+   git commit -m "Entrega final"
    git push -u origin entrega/TU-USUARIO
    ```
 4. En GitHub verás **"Compare & pull request"**. El PR va **hacia `main` del repo del profe**.
