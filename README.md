@@ -306,22 +306,21 @@ git commit -am "M5: Supabase con MCP"
 
 ## 🏁 Misión final · Entrega con Pull Request
 
-1. Pon en tu JSON el `codigoSesion`: la **palabra secreta** que el profe dirá en la clase.
-2. Comprueba antes de subir:
+1. Comprueba antes de subir:
    ```bash
    npm run validar -- TU-USUARIO
    npm run build
    ```
-3. Sube tu rama a **tu fork**:
+2. Sube tu rama a **tu fork**:
    ```bash
    git add .
    git commit -m "Entrega final"
    git push -u origin entrega/TU-USUARIO
    ```
-4. En GitHub verás **"Compare & pull request"**. El PR va **hacia `main` del repo del profe**.
-5. Llena la plantilla: palomea misiones y **arrastra tus 3 capturas**.
-6. Espera la palomita verde ✅ del robot. Si sale ❌, abre *Details*, corrige, haz commit y push (el PR se actualiza solo).
-7. Pega el link de tu PR en **#entregas** de Discord.
+3. En GitHub verás **"Compare & pull request"**. El PR va **hacia `main` del repo del profe**.
+4. Llena la plantilla: palomea misiones y **arrastra tus 3 capturas**.
+5. Espera la palomita verde ✅ del robot. Si sale ❌, abre *Details*, corrige, haz commit y push (el PR se actualiza solo).
+6. Pega el link de tu PR en **#entregas** de Discord.
 
 🎉 Cuando el profe haga merge, tu tarjeta aparece en el muro.
 

@@ -4,11 +4,10 @@
 // GitHub Actions corre este mismo script en cada Pull Request.
 import fs from "node:fs";
 import path from "node:path";
-import { REGEX_USUARIO, MISIONES, USUARIOS_EJEMPLO, hashCodigo } from "./_comun.mjs";
+import { REGEX_USUARIO, MISIONES } from "./_comun.mjs";
 
 const raiz = process.cwd();
 const carpeta = path.join(raiz, "alumnos");
-const sesion = JSON.parse(fs.readFileSync(path.join(raiz, "config", "sesion.json"), "utf8"));
 const soloUsuario = process.argv[2]?.toLowerCase();
 
 export function validarAlumno(archivo) {
@@ -51,11 +50,6 @@ export function validarAlumno(archivo) {
 
   const pagina = path.join(raiz, "src", "app", "alumnos", usuarioArchivo, "page.tsx");
   if (!fs.existsSync(pagina)) errores.push(`No existe tu página: src/app/alumnos/${usuarioArchivo}/page.tsx`);
-
-  if (sesion.codigoHash && !USUARIOS_EJEMPLO.includes(usuarioArchivo)) {
-    if (!a.codigoSesion) errores.push(`Falta "codigoSesion" (la palabra secreta que se dijo en clase)`);
-    else if (hashCodigo(a.codigoSesion) !== sesion.codigoHash) errores.push(`"codigoSesion" no es correcto`);
-  }
 
   return errores;
 }

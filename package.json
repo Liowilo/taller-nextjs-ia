@@ -14,7 +14,6 @@
     "nuevo-alumno": "node scripts/nuevo-alumno.mjs",
     "validar": "node scripts/validar.mjs",
     "validar-pr": "node scripts/validar-pr.mjs",
-    "hash-codigo": "node scripts/hash-codigo.mjs",
     "node:hola": "node ejercicios/node/01-hola-node.mjs",
     "node:archivos": "node ejercicios/node/02-archivos.mjs",
     "node:nvidia": "node --env-file-if-exists=.env.local ejercicios/node/03-nvidia-directo.mjs"

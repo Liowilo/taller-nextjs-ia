@@ -39,7 +39,6 @@ const datos = {
   color: azar(colores),
   misiones: { node: true, nextTailwind: false, v0: false, opencode: false, supabase: false },
   promptFavorito: "",
-  codigoSesion: "",
 };
 
 fs.writeFileSync(json, JSON.stringify(datos, null, 2) + "\n");

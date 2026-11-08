@@ -19,7 +19,6 @@ export type Alumno = {
   color: string; // color en hexadecimal, ej. "#22d3ee"
   misiones: Misiones;
   promptFavorito: string; // el mejor prompt que usaste en OpenCode o v0
-  codigoSesion: string; // la palabra secreta que se dice en la clase
 };
 
 const CARPETA = path.join(process.cwd(), "alumnos");

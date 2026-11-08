@@ -11,6 +11,5 @@
     "opencode": true,
     "supabase": true
   },
-  "promptFavorito": "Crea un componente cliente Reacciones.tsx en mi carpeta con 3 botones de emoji que cuenten clics, y agrégalo al final de mi page.tsx",
-  "codigoSesion": "ejemplo"
+  "promptFavorito": "Crea un componente cliente Reacciones.tsx en mi carpeta con 3 botones de emoji que cuenten clics, y agrégalo al final de mi page.tsx"
 }
