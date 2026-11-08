@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "nvidia/qwen/qwen3-coder-480b-a35b-instruct",
+  "model": "nvidia/deepseek-ai/deepseek-v4.1-flash",
   "provider": {
     "nvidia": {
       "npm": "@ai-sdk/openai-compatible",
@@ -10,21 +10,25 @@
         "apiKey": "{env:NVIDIA_API_KEY}"
       },
       "models": {
-        "qwen/qwen3-coder-480b-a35b-instruct": {
-          "name": "Qwen3 Coder 480B (recomendado para código)",
-          "limit": { "context": 262144, "output": 16384 }
+        "deepseek-ai/deepseek-v4.1-flash": {
+          "name": "DeepSeek V4.1 Flash",
+          "limit": { "context": 128000, "output": 16384 }
         },
-        "moonshotai/kimi-k2-instruct": {
-          "name": "Kimi K2",
-          "limit": { "context": 131072, "output": 16384 }
+        "z-ai/glm-5.3-flash": {
+          "name": "GLM 5.3 Flash",
+          "limit": { "context": 128000, "output": 16384 }
         },
-        "deepseek-ai/deepseek-v3.1": {
-          "name": "DeepSeek V3.1",
-          "limit": { "context": 131072, "output": 16384 }
+        "mistralai/mistral-large-4-1t-a52b": {
+          "name": "Mistral Large 4",
+          "limit": { "context": 128000, "output": 16384 }
         },
-        "meta/llama-3.3-70b-instruct": {
-          "name": "Llama 3.3 70B (respaldo ligero)",
-          "limit": { "context": 131072, "output": 8192 }
+        "nvidia/nemotron-3-ultra-550b-a55b": {
+          "name": "Nemotron 3 Ultra",
+          "limit": { "context": 128000, "output": 16384 }
+        },
+        "openai/gpt-oss-20b": {
+          "name": "gpt-oss 20B (respaldo ligero)",
+          "limit": { "context": 128000, "output": 16384 }
         }
       }
     }
