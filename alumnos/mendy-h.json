@@ -1,0 +1,15 @@
+{
+  "usuario": "mendy-h",
+  "nombre": "Wendy G A Hernández Hernández",
+  "frase": "En constante construcción.",
+  "emoji": "🧸",
+  "color": "#c084fc",
+  "misiones": {
+    "node": true,
+    "nextTailwind": true,
+    "v0": true,
+    "opencode": true,
+    "supabase": true
+  },
+  "promptFavorito": "Explícame paso a paso cómo estructurar y validar un sistema en Next.js y TypeScript manteniendo un código limpio y fácil de mantener."
+}
