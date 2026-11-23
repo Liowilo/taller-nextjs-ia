@@ -1,0 +1,15 @@
+{
+  "usuario": "323066459-beep",
+  "nombre": "Julián",
+  "frase": "Que bonito es Israel",
+  "emoji": "🎧",
+  "color": "#22d3ee",
+  "misiones": {
+    "node": true,
+    "nextTailwind": true,
+    "v0": true,
+    "opencode": true,
+    "supabase": true
+  },
+  "promptFavorito": "Lee src/app/alumnos/323066459-beep/page.tsx. Crea un componente cliente Reacciones.tsx en esa misma carpeta con 3 botones de emoji que cuenten clics, y agrégalo donde dice MISIÓN 4."
+}
